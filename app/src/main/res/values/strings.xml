@@ -4,7 +4,7 @@
     <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
     <string name="prompt_password_again">Confirm Password</string>
-    <string name="prompt_msg">Type a message</string>
+    <string name="prompt_msg">Type a custom message</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_register">Register</string>
     <string name="action_sign_in_short">Sign in</string>
@@ -18,4 +18,6 @@
         completions."
     </string>
     <string name="sample_message">Hello!</string>
+    <string name="corrective">Corrective</string>
+    <string name="positive">Positive</string>
 </resources>

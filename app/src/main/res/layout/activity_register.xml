@@ -9,7 +9,7 @@
               android:paddingRight="@dimen/activity_horizontal_margin"
               android:paddingTop="@dimen/activity_vertical_margin"
               android:background="@drawable/background_login_min"
-              tools:context="com.karenmandarina.flashchatnewfirebase.RegisterActivity"
+              tools:context="com.wear.adap.adam.wear.flashchatnewfirebase.RegisterActivity"
               android:gravity="top">
 
 
@@ -26,8 +26,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
                 android:hint="@string/prompt_username"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
                 android:inputType="textNoSuggestions"
                 android:imeOptions="actionNext"
                 android:maxLines="1"
@@ -47,10 +47,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/prompt_email"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="25sp"
                 android:imeOptions="actionNext"
-                android:textColorHint="@color/white"
+                android:textColorHint="@color/black"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:textIsSelectable="false"
@@ -67,8 +67,8 @@
             <EditText
                 android:id="@+id/register_password"
                 android:textSize="25sp"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
                 android:layout_width="match_parent"
                 android:imeOptions="actionNext"
                 android:layout_height="wrap_content"
@@ -87,9 +87,9 @@
 
             <EditText
                 android:id="@+id/register_confirm_password"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="25sp"
-                android:textColorHint="@color/white"
+                android:textColorHint="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/prompt_password_again"

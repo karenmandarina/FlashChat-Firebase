@@ -8,7 +8,7 @@
               android:paddingRight="@dimen/activity_horizontal_margin"
               android:paddingTop="@dimen/activity_vertical_margin"
               android:background="@drawable/background_welcome_min"
-              tools:context="com.karenmandarina.flashchatnewfirebase.LoginActivity"
+              tools:context="com.wear.adap.adam.wear.flashchatnewfirebase.LoginActivity"
               android:gravity="bottom">
 
     <android.support.design.widget.TextInputLayout
@@ -23,8 +23,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/prompt_email"
             android:imeOptions="actionNext"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:textIsSelectable="false"/>
@@ -39,8 +39,8 @@
 
         <EditText
             android:id="@+id/login_password"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/prompt_password"
