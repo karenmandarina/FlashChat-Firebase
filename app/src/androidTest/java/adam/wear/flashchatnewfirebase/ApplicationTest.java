@@ -1,4 +1,4 @@
-package adam.wear.adap;
+package adam.wear.flashchatnewfirebase;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

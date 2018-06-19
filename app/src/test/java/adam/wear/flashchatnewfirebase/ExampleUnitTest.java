@@ -1,4 +1,4 @@
-package adam.wear.adap;
+package adam.wear.flashchatnewfirebase;
 
 import org.junit.Test;
 
