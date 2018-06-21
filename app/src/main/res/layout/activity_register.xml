@@ -13,33 +13,33 @@
               android:gravity="top">
 
 
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/black"
+
+        >
+
+        <AutoCompleteTextView
+            android:id="@+id/register_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/prompt_username"
+            android:imeOptions="actionNext"
+            android:inputType="textNoSuggestions"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textIsSelectable="false"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+    </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/white"
-            >
-
-            <AutoCompleteTextView
-                android:id="@+id/register_username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="25sp"
-                android:hint="@string/prompt_username"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:inputType="textNoSuggestions"
-                android:imeOptions="actionNext"
-                android:maxLines="1"
-                android:textIsSelectable="false"
-                android:textStyle="bold"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/black"
             >
 
             <AutoCompleteTextView
@@ -61,7 +61,7 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/black"
             >
 
             <EditText
@@ -82,7 +82,7 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/black"
             >
 
             <EditText

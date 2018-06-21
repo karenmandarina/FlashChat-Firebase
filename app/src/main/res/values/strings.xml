@@ -17,7 +17,12 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="sample_message">Hello!</string>
+    <string name="sample_email">example@something.com</string>
     <string name="corrective">Corrective</string>
+    <string name="select_user"> Select User Type:</string>
     <string name="positive">Positive</string>
+    <string-array name="UserType">
+        <item> Watch user</item>
+        <item> Phone/Tablet user</item>
+    </string-array>
 </resources>

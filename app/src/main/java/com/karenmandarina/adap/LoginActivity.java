@@ -10,8 +10,11 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +22,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -26,12 +31,16 @@ public class LoginActivity extends AppCompatActivity {
 // constants
     static final String EMAIL_PREFS = "EmailPrefs";
     static final String SENDER_EMAIL = "senderEmail";
+    static final String USER_PREFS = "UserPrefs";
+    static final String USER_TYPE = "userType";
 
     // TODO: Add member variables here:
     private FirebaseAuth mAuth;
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
+    private Spinner mUserTypeSpinner;
+    private ArrayAdapter<CharSequence> mUserTypeAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mEmailView = (AutoCompleteTextView) findViewById(R.id.login_email);
         mPasswordView = (EditText) findViewById(R.id.login_password);
+        mUserTypeSpinner = (Spinner) findViewById(R.id.user_type);
 
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -56,7 +66,6 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
     }
-
 
     // Executed when Sign in button pressed
     public void signInExistingUser(View v)   {
@@ -77,6 +86,27 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences emailprefs = getSharedPreferences(EMAIL_PREFS, 0);
         // putString(Key, value) ...
         emailprefs.edit().putString(SENDER_EMAIL, senderEmail).apply();
+    }
+    private void saveUserType(){
+        mUserTypeAdapter = ArrayAdapter.createFromResource(this, R.array.UserType, android.R.layout.simple_spinner_item);
+        mUserTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mUserTypeSpinner.setAdapter(mUserTypeAdapter);
+        mUserTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // Toast.makeText(getBaseContext(), parent.getItemAtPosition(position) + " is selected", Toast.LENGTH_SHORT).show();
+                String userType = (String) parent.getItemAtPosition(position);
+                SharedPreferences user = getSharedPreferences(USER_PREFS, 0);
+                // putString(Key, value) ...
+                user.edit().putString(USER_TYPE, userType).apply();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 
     // TODO: Complete the attemptLogin() method
@@ -101,7 +131,8 @@ public class LoginActivity extends AppCompatActivity {
                     showErrorDialog("There was a problem signing in");
                 } else {
                     saveSenderEmail();
-                    Intent intent = new Intent(LoginActivity.this, MainChatActivity.class);
+                    saveUserType();
+                    Intent intent = new Intent(LoginActivity.this, UsersList.class);
                     finish();
                     startActivity(intent);
                     Log.d("FlashChat", "moved on to main activity");

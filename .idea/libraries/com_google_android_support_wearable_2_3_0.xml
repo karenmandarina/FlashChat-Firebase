@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="com.google.android.support:wearable-2.3.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/wearable-2.3.0.aar/3e72759e2f9a9a00bbd4f97ab135af1f/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/wearable-2.3.0.aar/3e72759e2f9a9a00bbd4f97ab135af1f/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,23 +1,30 @@
 package com.karenmandarina.adap;
 
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Color;
-import android.view.Gravity;
-import android.view.LayoutInflater;
+/**
+ * Created by karenmandarina on 6/19/18.
+ */
+
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.karenmandarina.adap.R;
 
 
-import java.util.ArrayList;
+        import android.app.Activity;
+        import android.content.Context;
+        import android.content.res.Resources;
+        import android.graphics.Color;
+        import android.support.v4.content.ContextCompat;
+        import android.view.Gravity;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.BaseAdapter;
+        import android.widget.LinearLayout;
+        import android.widget.TextView;
+        import com.google.firebase.database.ChildEventListener;
+        import com.google.firebase.database.DataSnapshot;
+        import com.google.firebase.database.DatabaseError;
+        import com.google.firebase.database.DatabaseReference;
+
+        import java.util.ArrayList;
 
 public class ChatListAdapter extends BaseAdapter {
 
@@ -69,7 +76,6 @@ public class ChatListAdapter extends BaseAdapter {
 
     private static class ViewHolder{
         TextView authorName;
-        TextView body;
         LinearLayout.LayoutParams params;
     }
 
@@ -99,7 +105,6 @@ public class ChatListAdapter extends BaseAdapter {
 
             final ViewHolder holder = new ViewHolder();
             holder.authorName = (TextView) convertView.findViewById(R.id.author);
-            holder.body = (TextView) convertView.findViewById(R.id.message);
             holder.params = (LinearLayout.LayoutParams) holder.authorName.getLayoutParams();
             convertView.setTag(holder);
 
@@ -108,41 +113,11 @@ public class ChatListAdapter extends BaseAdapter {
         final InstantMessage message = getItem(position);
         final ViewHolder holder = (ViewHolder) convertView.getTag();
 
-        boolean isMe = message.getAuthor().equals(mDisplayName);
-        setChatRowAppearance(isMe, holder);
-
-        String author = message.getAuthor();
+        String author = message.getSenderEmail();
         holder.authorName.setText(author);
-
-        String msg = message.getMessage();
-        holder.body.setText(msg);
 
 
         return convertView;
-    }
-
-    private void setChatRowAppearance(boolean isItMe, ViewHolder holder) {
-
-        if (isItMe) {
-
-
-            holder.params.gravity = Gravity.END;
-            holder.authorName.setTextColor(Color.GREEN);
-
-            // If you want to use colours from colors.xml
-            // int colourAsARGB = ContextCompat.getColor(mActivity.getApplicationContext(), R.color.yellow);
-            // holder.authorName.setTextColor(colourAsARGB);
-
-            holder.body.setBackgroundResource(R.drawable.bubble2);
-        } else {
-            holder.params.gravity = Gravity.START;
-            holder.authorName.setTextColor(Color.BLUE);
-            holder.body.setBackgroundResource(R.drawable.bubble1);
-        }
-
-        holder.authorName.setLayoutParams(holder.params);
-        holder.body.setLayoutParams(holder.params);
-
     }
 
 

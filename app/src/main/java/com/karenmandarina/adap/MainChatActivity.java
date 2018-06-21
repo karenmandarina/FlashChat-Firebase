@@ -3,6 +3,7 @@ package com.karenmandarina.adap;
 
 import android.app.Notification;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -15,9 +16,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -33,7 +36,7 @@ public class MainChatActivity extends AppCompatActivity {
 
     // TODO: Add member variables here:
     private String mDisplayName;
-    // private ListView mChatListView;
+     //private ListView mChatListView;
     private EditText mInputText;
     private ImageButton mSendButton;
     private Button mGoodButton;
@@ -42,6 +45,7 @@ public class MainChatActivity extends AppCompatActivity {
     // private FirebaseFirestore mDR;
     // private ChatListAdapter mAdapter;
     private String mSenderEmail;
+    private String mUserType;
     ArrayList<String> commands;
 
 
@@ -52,6 +56,7 @@ public class MainChatActivity extends AppCompatActivity {
 
         // TODO: Set up the display name and get the Firebase reference
         setupSenderEmail();
+        setupUserType();
         setupDisplayName();
         commands = new ArrayList<String>();
         Log.d("FlashChat", "senderEmail saved");
@@ -60,6 +65,7 @@ public class MainChatActivity extends AppCompatActivity {
         // DatabaseReference is needed becasue it points to particular location in the FirebaseDatabase
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
         // mDR = FirebaseFirestore.getInstance();
+
 
 
         // Link the Views in the layout to the Java code
@@ -107,7 +113,13 @@ public class MainChatActivity extends AppCompatActivity {
         Log.d("FlashChat", "set up sender email " + mSenderEmail);
 
     }
+    private void setupUserType() {
+        SharedPreferences user = getSharedPreferences(LoginActivity.USER_PREFS, MODE_PRIVATE);
+        mUserType = user.getString(LoginActivity.USER_TYPE, null);
+        if (mUserType == null) mUserType = "N/A";
+        Log.d("FlashChat", "set up user type " + mUserType);
 
+    }
 
     private void sendMessage() {
 
@@ -124,15 +136,14 @@ public class MainChatActivity extends AppCompatActivity {
          Date time = Calendar.getInstance().getTime();
         // String time = DateFormat.getDateTimeInstance().format(new Date());
         if (!input.equals("")) {
-            InstantMessage chat = new InstantMessage(input, time, mSenderEmail);
+            InstantMessage chat = new InstantMessage(input, time, mSenderEmail, mUserType);
             mDatabaseReference.child("messages").push().setValue(chat);
 //            mDR.collection("messages")
 //                    .add(chat);
             mInputText.setText("");
+
         }
-
     }
-
     private void sendGoodMessage() {
 
         Log.d("FlashChat", "I sent something positive");
@@ -140,7 +151,7 @@ public class MainChatActivity extends AppCompatActivity {
         String input = "Positive";
         Date time = Calendar.getInstance().getTime();
         // String time = DateFormat.getDateTimeInstance().format(new Date());
-        InstantMessage chat = new InstantMessage(input, time, mSenderEmail);
+        InstantMessage chat = new InstantMessage(input, time, mSenderEmail, mUserType);
         mDatabaseReference.child("messages").push().setValue(chat);
 //      mDR.collection("messages")
 //              .add(chat);
@@ -152,11 +163,12 @@ public class MainChatActivity extends AppCompatActivity {
         String input = "Corrective";
         Date time = Calendar.getInstance().getTime();
         // String time = DateFormat.getDateTimeInstance().format(new Date());
-        InstantMessage chat = new InstantMessage(input, time, mSenderEmail);
+        InstantMessage chat = new InstantMessage(input, time, mSenderEmail, mUserType);
         mDatabaseReference.child("messages").push().setValue(chat);
 //      mDR.collection("messages")
 //              .add(chat);
     }
+
 
     // TODO: Override the onStart() lifecycle method. Setup the adapter here.
 //    @Override
